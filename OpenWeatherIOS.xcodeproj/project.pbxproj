@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA058473283E94B900F503DC /* Capital.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA058472283E94B900F503DC /* Capital.swift */; };
+		FA058473283E94B900F503DC /* Town.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA058472283E94B900F503DC /* Town.swift */; };
 		FAF05CDB283E427700565DAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF05CDA283E427700565DAE /* AppDelegate.swift */; };
 		FAF05CDD283E427700565DAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF05CDC283E427700565DAE /* SceneDelegate.swift */; };
 		FAF05CDF283E427700565DAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF05CDE283E427700565DAE /* ViewController.swift */; };
@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FA058472283E94B900F503DC /* Capital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capital.swift; sourceTree = "<group>"; };
+		FA058472283E94B900F503DC /* Town.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Town.swift; sourceTree = "<group>"; };
 		FAF05CD7283E427700565DAE /* OpenWeatherIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF05CDA283E427700565DAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAF05CDC283E427700565DAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,7 +61,7 @@
 				FAF05CDA283E427700565DAE /* AppDelegate.swift */,
 				FAF05CDC283E427700565DAE /* SceneDelegate.swift */,
 				FAF05CDE283E427700565DAE /* ViewController.swift */,
-				FA058472283E94B900F503DC /* Capital.swift */,
+				FA058472283E94B900F503DC /* Town.swift */,
 				FAF05CE0283E427700565DAE /* Main.storyboard */,
 				FAF05CE3283E427900565DAE /* Assets.xcassets */,
 				FAF05CE5283E427900565DAE /* LaunchScreen.storyboard */,
@@ -143,7 +143,7 @@
 			files = (
 				FAF05CDF283E427700565DAE /* ViewController.swift in Sources */,
 				FAF05CDB283E427700565DAE /* AppDelegate.swift in Sources */,
-				FA058473283E94B900F503DC /* Capital.swift in Sources */,
+				FA058473283E94B900F503DC /* Town.swift in Sources */,
 				FAF05CDD283E427700565DAE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

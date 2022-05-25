@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class Capital: NSObject, MKAnnotation  {
+class Town: NSObject, MKAnnotation  {
     
     var title: String?
     var coordinate: CLLocationCoordinate2D
