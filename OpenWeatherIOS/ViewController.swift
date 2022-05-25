@@ -15,7 +15,25 @@ class ViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(promptForFilter))
+    }
+    
+    /**
+     Prompts an alert controller to the user when the search button is tapped for typing the ZIP code or city
+     */
+    @objc func promptForFilter() {
+        let ac = UIAlertController(title: "Enter city", message: nil, preferredStyle: .alert)
+        ac.addTextField()
         
+        let submitAction = UIAlertAction(title: "Filter", style: .default) {
+            [weak self, weak ac] _ in
+            guard let filter = ac?.textFields?[0].text?.lowercased() else { return }
+            //self?.filter(filter.lowercased())
+        }
+        
+        ac.addAction(submitAction)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(ac, animated: true)
     }
     
     /**
@@ -66,7 +84,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         let ac = UIAlertController(title: townName, message: townInfo, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(ac, animated: true) 
     }
 
 }
