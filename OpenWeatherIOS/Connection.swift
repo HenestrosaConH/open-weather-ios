@@ -17,7 +17,7 @@ class Connection {
      
      - Returns: TownWeather object with all the data
      */
-    static func getTownWeather(from url: String, completion: @escaping (_ success: Bool, _ townWeather: TownWeather?, _ error: Error?) -> Void) -> URLSessionTask {
+    static func getTownWeather(from url: String, completion: @escaping (_ success: Bool, _ townWeather: TownWeather?, _ error: Error?) -> Void) {
         let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: {
             data, response, error in
             
@@ -39,7 +39,6 @@ class Connection {
         
         // This is what fires the request
         task.resume()
-        return task
     }
     
 }

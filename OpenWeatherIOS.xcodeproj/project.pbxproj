@@ -12,6 +12,8 @@
 		FA058478283F6A6A00F503DC /* Coord.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA058477283F6A6A00F503DC /* Coord.swift */; };
 		FA05847A283F755500F503DC /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA058479283F755500F503DC /* Main.swift */; };
 		FA05847C283F75A100F503DC /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05847B283F75A100F503DC /* Wind.swift */; };
+		FA05847E283F878900F503DC /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05847D283F878900F503DC /* Pin.swift */; };
+		FA058480283F8F1200F503DC /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05847F283F8F1200F503DC /* File.swift */; };
 		FAF05CDB283E427700565DAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF05CDA283E427700565DAE /* AppDelegate.swift */; };
 		FAF05CDD283E427700565DAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF05CDC283E427700565DAE /* SceneDelegate.swift */; };
 		FAF05CDF283E427700565DAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF05CDE283E427700565DAE /* ViewController.swift */; };
@@ -26,6 +28,8 @@
 		FA058477283F6A6A00F503DC /* Coord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coord.swift; sourceTree = "<group>"; };
 		FA058479283F755500F503DC /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		FA05847B283F75A100F503DC /* Wind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wind.swift; sourceTree = "<group>"; };
+		FA05847D283F878900F503DC /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		FA05847F283F8F1200F503DC /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		FAF05CD7283E427700565DAE /* OpenWeatherIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF05CDA283E427700565DAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAF05CDC283E427700565DAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 				FA058477283F6A6A00F503DC /* Coord.swift */,
 				FA058479283F755500F503DC /* Main.swift */,
 				FA05847B283F75A100F503DC /* Wind.swift */,
+				FA05847D283F878900F503DC /* Pin.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -61,6 +66,7 @@
 		FAF05CCE283E427700565DAE = {
 			isa = PBXGroup;
 			children = (
+				FA05847F283F8F1200F503DC /* File.swift */,
 				FAF05CD9283E427700565DAE /* OpenWeatherIOS */,
 				FAF05CD8283E427700565DAE /* Products */,
 			);
@@ -164,7 +170,9 @@
 				FAF05CDF283E427700565DAE /* ViewController.swift in Sources */,
 				FAF05CDB283E427700565DAE /* AppDelegate.swift in Sources */,
 				FA058475283EE38700F503DC /* Connection.swift in Sources */,
+				FA05847E283F878900F503DC /* Pin.swift in Sources */,
 				FA058478283F6A6A00F503DC /* Coord.swift in Sources */,
+				FA058480283F8F1200F503DC /* File.swift in Sources */,
 				FA058473283E94B900F503DC /* TownWeather.swift in Sources */,
 				FA05847A283F755500F503DC /* Main.swift in Sources */,
 				FAF05CDD283E427700565DAE /* SceneDelegate.swift in Sources */,

@@ -29,6 +29,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         let submitAction = UIAlertAction(title: "Search", style: .default) {
             [weak ac] _ in
+            
             guard let filter = ac?.textFields?[0].text?.lowercased() else { return }
             let url = "https://api.openweathermap.org/data/2.5/weather?q=\(filter)&appid=34a31e8efb2b36328928533c63e9dec1"
             
@@ -36,9 +37,11 @@ class ViewController: UIViewController, MKMapViewDelegate {
                 success, townWeather, error in
                 
                 if success {
-                    
+                    let pin = Pin(title: townWeather!.name, coordinate: CLLocationCoordinate2D(latitude: townWeather!.coord.lat, longitude: townWeather!.coord.lon), info: "foo")
+                    print(pin.coordinate.latitude)
+                    self.mapView.addAnnotation(pin)
                 } else {
-                    
+                    print("not successful")
                 }
             })
         }
@@ -57,9 +60,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
      - Returns: Pin to show.
      */
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is TownWeather else { return nil }
+        print("hola")
+        guard annotation is Pin else { return nil }
         
-        let identifier = "TownWeather"
+        let identifier = "Pin"
         
         // Dequeues a pin from the map view's pool of unused views and stores it in a var.
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
@@ -74,7 +78,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
             let btn = UIButton(type: .detailDisclosure)
             annotationView?.rightCalloutAccessoryView = btn
         } else {
-            // It can reuse a view so update it to load data of a different annotation.
+            // It can reuse a view so it will update it to load data of a different annotation.
             annotationView?.annotation = annotation
         }
         
@@ -89,12 +93,12 @@ class ViewController: UIViewController, MKMapViewDelegate {
      - Parameter control: The control that was tapped. Not used.
      */
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let townWeather = view.annotation as? TownWeather else { return }
+        guard let pin = view.annotation as? Pin else { return }
         
-        let townName = townWeather.name
-        let townInfo = townWeather.info
+        let title = pin.title
+        let info = pin.info
         
-        let ac = UIAlertController(title: townName, message: townInfo, preferredStyle: .alert)
+        let ac = UIAlertController(title: title, message: info, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(ac, animated: true) 
