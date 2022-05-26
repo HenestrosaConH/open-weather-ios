@@ -42,3 +42,5 @@ class Connection {
     }
     
 }
+
+extension String: Error {}

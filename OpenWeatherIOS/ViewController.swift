@@ -38,10 +38,18 @@ class ViewController: UIViewController, MKMapViewDelegate {
                 
                 if success {
                     let pin = Pin(title: townWeather!.name, coordinate: CLLocationCoordinate2D(latitude: townWeather!.coord.lat, longitude: townWeather!.coord.lon), info: "foo")
-                    print(pin.coordinate.latitude)
+                    let northPin = Pin(title: townWeather!.name, coordinate: CLLocationCoordinate2D(latitude: townWeather!.coord.lat, longitude: townWeather!.coord.lon), info: "foo")
+                    let southPin = Pin(title: townWeather!.name, coordinate: CLLocationCoordinate2D(latitude: townWeather!.coord.lat, longitude: townWeather!.coord.lon), info: "foo")
+                    let eastPin = Pin(title: townWeather!.name, coordinate: CLLocationCoordinate2D(latitude: townWeather!.coord.lat, longitude: townWeather!.coord.lon), info: "foo")
+                    let westPin = Pin(title: townWeather!.name, coordinate: CLLocationCoordinate2D(latitude: townWeather!.coord.lat, longitude: townWeather!.coord.lon), info: "foo")
+                    
                     self.mapView.addAnnotation(pin)
                 } else {
-                    print("not successful")
+                    DispatchQueue.main.async {
+                        let ac = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "OK", style: .default))
+                        self.present(ac, animated: true)
+                    }
                 }
             })
         }
@@ -60,7 +68,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
      - Returns: Pin to show.
      */
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        print("hola")
         guard annotation is Pin else { return nil }
         
         let identifier = "Pin"
@@ -101,7 +108,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         let ac = UIAlertController(title: title, message: info, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        present(ac, animated: true) 
+        present(ac, animated: true)
     }
 
 }

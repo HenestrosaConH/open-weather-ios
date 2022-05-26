@@ -7,7 +7,6 @@ This project aims at fetching data from the OpenWeather API to show the location
 - Use of MapKit to display the map and MKAnnotation to pin the location on the map.
 - URLSession for fetching the data from the API.
 
-## Todo
-- The city entered is not being displayed on the map.  
+## Todo  
 - The 4 cities are yet to be determined.
 - Once we know the cities, we need to compare their data and show the user a pop-up to display the data.
