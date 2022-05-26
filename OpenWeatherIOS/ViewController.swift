@@ -15,6 +15,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "OpenWeather"
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(promptForFilter))
     }
     
@@ -25,10 +27,20 @@ class ViewController: UIViewController, MKMapViewDelegate {
         let ac = UIAlertController(title: "Enter city", message: nil, preferredStyle: .alert)
         ac.addTextField()
         
-        let submitAction = UIAlertAction(title: "Filter", style: .default) {
-            [weak self, weak ac] _ in
+        let submitAction = UIAlertAction(title: "Search", style: .default) {
+            [weak ac] _ in
             guard let filter = ac?.textFields?[0].text?.lowercased() else { return }
-            //self?.filter(filter.lowercased())
+            let url = "https://api.openweathermap.org/data/2.5/weather?q=\(filter)&appid=34a31e8efb2b36328928533c63e9dec1"
+            
+            Connection.getTownWeather(from: url, completion: {
+                success, townWeather, error in
+                
+                if success {
+                    
+                } else {
+                    
+                }
+            })
         }
         
         ac.addAction(submitAction)
@@ -45,9 +57,9 @@ class ViewController: UIViewController, MKMapViewDelegate {
      - Returns: Pin to show.
      */
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is Town else { return nil }
+        guard annotation is TownWeather else { return nil }
         
-        let identifier = "Town"
+        let identifier = "TownWeather"
         
         // Dequeues a pin from the map view's pool of unused views and stores it in a var.
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
@@ -77,10 +89,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
      - Parameter control: The control that was tapped. Not used.
      */
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let town = view.annotation as? Town else { return }
+        guard let townWeather = view.annotation as? TownWeather else { return }
         
-        let townName = town.title
-        let townInfo = town.info
+        let townName = townWeather.name
+        let townInfo = townWeather.info
         
         let ac = UIAlertController(title: townName, message: townInfo, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -89,4 +101,3 @@ class ViewController: UIViewController, MKMapViewDelegate {
     }
 
 }
-
