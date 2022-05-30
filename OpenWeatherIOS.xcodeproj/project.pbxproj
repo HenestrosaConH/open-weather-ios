@@ -11,7 +11,6 @@
 		FA058475283EE38700F503DC /* TownData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA058474283EE38700F503DC /* TownData.swift */; };
 		FA05847E283F878900F503DC /* TownAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05847D283F878900F503DC /* TownAnnotation.swift */; };
 		FA0584872840C4E700F503DC /* TownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0584862840C4E700F503DC /* TownViewModel.swift */; };
-		FA796ADD28413C52002DC4DD /* CountriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA796ADC28413C52002DC4DD /* CountriesList.swift */; };
 		FA796ADF28422F87002DC4DD /* TownName.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA796ADE28422F87002DC4DD /* TownName.swift */; };
 		FA796AE1284272D0002DC4DD /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA796AE0284272D0002DC4DD /* Stats.swift */; };
 		FA796AE42843E93C002DC4DD /* TownUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA796AE32843E93C002DC4DD /* TownUrl.swift */; };
@@ -135,7 +134,6 @@
 		FA058474283EE38700F503DC /* TownData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TownData.swift; sourceTree = "<group>"; };
 		FA05847D283F878900F503DC /* TownAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TownAnnotation.swift; sourceTree = "<group>"; };
 		FA0584862840C4E700F503DC /* TownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TownViewModel.swift; sourceTree = "<group>"; };
-		FA796ADC28413C52002DC4DD /* CountriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesList.swift; sourceTree = "<group>"; };
 		FA796ADE28422F87002DC4DD /* TownName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TownName.swift; sourceTree = "<group>"; };
 		FA796AE0284272D0002DC4DD /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		FA796AE32843E93C002DC4DD /* TownUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TownUrl.swift; sourceTree = "<group>"; };
@@ -299,7 +297,6 @@
 		FA0584842840B48F00F503DC /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				FA796AE2284289F2002DC4DD /* Utils */,
 				FA0584852840BD0900F503DC /* Data */,
 				FA058482283FE6E900F503DC /* Views */,
 				FA058481283FE6D700F503DC /* ViewModels */,
@@ -315,14 +312,6 @@
 				FA796AE32843E93C002DC4DD /* TownUrl.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		FA796AE2284289F2002DC4DD /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				FA796ADC28413C52002DC4DD /* CountriesList.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		FA83826028445703006BAACE /* AlertsAndPickers */ = {
@@ -827,7 +816,6 @@
 				FA83834C28445703006BAACE /* CollectionViewVideoCell.swift in Sources */,
 				FA83834F28445703006BAACE /* CollectionViewCustomContentCell.swift in Sources */,
 				FA83834B28445703006BAACE /* TelegramPickerViewController.swift in Sources */,
-				FA796ADD28413C52002DC4DD /* CountriesList.swift in Sources */,
 				FA83830A28445703006BAACE /* GallerySwipeToDismissTransition.swift in Sources */,
 				FA83833528445703006BAACE /* Assets.swift in Sources */,
 				FA8382F228445703006BAACE /* UIView+Extensions.swift in Sources */,
