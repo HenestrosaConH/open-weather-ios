@@ -15,6 +15,9 @@ class TownUrl {
     ]
     let apiKey = "34a31e8efb2b36328928533c63e9dec1"
 
+    /**
+     Builds the URL that that is going to be sended to the API through the Data layer
+     */
     func getUrl(path: String, parameters: [String : String]) -> URL {
         var nameUrlComponents = URLComponents(string: baseUrl)!
         nameUrlComponents.path = path

@@ -30,9 +30,9 @@ class TownViewModel {
     private let townUrl = TownUrl()
     
     /**
-     Creates a TownAnnotation from the name of a town input by the user. From the given town, we get the relative towns that are 200 km away from it.
+     Creates a TownAnnotation from the name of a town input by the user. From the given town, we get the relative towns that are at, in this case, 200 km away from it.
      
-     - Parameter inputTown: Name of the town introduced by the user.
+     - Parameter parameters: Parameters to be appended to the URL
      */
     func retrieveTownsWeather(parameters: [String : String]) {
         var mutableParameters = parameters

@@ -14,30 +14,37 @@ class TownViewController: UIViewController {
     
     let viewModel = TownViewModel()
     let countriesList = CountriesList()
+    var selectedCountry: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "OpenWeather"
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchBy))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(selectFilter))
         bind()
     }
     
-    @objc func searchBy() {
+    /**
+     Prompts an action sheet to select the filter (town or ZIP code)
+     */
+    @objc func selectFilter() {
         let ac = UIAlertController(title: "Search town by", message: nil, preferredStyle: .actionSheet)
         
         ac.addAction(UIAlertAction(title: "Name", style: .default) {_ in
-            self.promptForFilter(type: "town", filter: SearchFilter.town)
+            self.searchByTown()
         })
         ac.addAction(UIAlertAction(title: "ZIP code", style: .default) {_ in
-            self.promptForFilter(type: "ZIP code", filter: SearchFilter.zipCode)
+            self.searchByZipCode()
         })
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         present(ac, animated: true)
     }
     
+    /**
+     Connects the view model with the view
+     */
     private func bind() {
         viewModel.refreshData = { [weak self] () in
             if let annotations = self?.viewModel.annotations {
@@ -60,10 +67,10 @@ class TownViewController: UIViewController {
     }
     
     /**
-     Prompts an alert controller to the user when the search button is tapped for typing the ZIP code or city
+     Displays a text field to input the town to search.
      */
-    func promptForFilter(type: String, filter: SearchFilter) {
-        let ac = UIAlertController(title: "Enter \(type)", message: nil, preferredStyle: .alert)
+    func searchByTown() {
+        let ac = UIAlertController(title: "Enter town", message: nil, preferredStyle: .alert)
         ac.addTextField()
         
         let submitAction = UIAlertAction(title: "Search", style: .default) {
@@ -72,19 +79,11 @@ class TownViewController: UIViewController {
             guard let input = ac?.textFields?[0].text?.lowercased() else { return }
             
             var parameters: [String : String]!
-            switch filter {
-            case .town:
-                let escapedName = input.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-                parameters = [
-                    "q": escapedName ?? "",
-                    "units": "metric",
-                ]
-            case .zipCode:
-                parameters = [
-                    "zip": "\(input)",
-                    "units": "metric",
-                ]
-            }
+            let escapedName = input.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
+            parameters = [
+                "q": escapedName ?? "",
+                "units": "metric",
+            ]
             
             self.viewModel.retrieveTownsWeather(parameters: parameters)
         }
@@ -94,30 +93,43 @@ class TownViewController: UIViewController {
         present(ac, animated: true)
     }
     
+    /**
+     Shows a list of countries first and then displays a text field to input the ZIP to search.
+     */
+    func searchByZipCode() {
+        let alert = UIAlertController(style: .actionSheet, message: "Select country")
+        alert.addLocalePicker(type: .country) { info in
+            let ac = UIAlertController(title: "Enter ZIP code", message: nil, preferredStyle: .alert)
+            ac.addTextField()
+            
+            let submitAction = UIAlertAction(title: "Search", style: .default) {
+                [weak ac] _ in
+                
+                guard let input = ac?.textFields?[0].text?.lowercased() else { return }
+                
+                var parameters: [String : String]!
+                parameters = [
+                    "zip": "\(input),\(info?.code ?? "")",
+                    "units": "metric",
+                ]
+                
+                self.viewModel.retrieveTownsWeather(parameters: parameters)
+            }
+            
+            ac.addAction(submitAction)
+            ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(ac, animated: true)
+        }
+        alert.addAction(title: "OK", style: .cancel)
+        alert.show()
+    }
+    
     func displayAsyncAlert(title: String, message: String) {
         DispatchQueue.main.async {
             let ac = UIAlertController(title: "Stats", message: message, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(ac, animated: true)
         }
-    }
-}
-
-extension TownViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.countriesList.countries.count
-    }
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.countriesList.countries[row]["name"]
-    }
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.countriesList.countries[row]["code"]
     }
 }
 
@@ -175,6 +187,12 @@ extension TownViewController: MKMapViewDelegate {
         present(ac, animated: true)
     }
     
+    /**
+     Part of the MKMapViewDelegate. Handles the event when the user taps on a pin in order to load the relative towns from the original point.
+     
+     - Parameter mapView: Map view in which the pins are.
+     - Parameter view: Selected annotation
+     */
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let annotation = view.annotation as? TownAnnotation else { return }
         
