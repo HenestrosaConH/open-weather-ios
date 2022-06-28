@@ -9,10 +9,10 @@ struct TownName: Decodable {
     let name: String
 }
 
-/**
- JSON Example:
- -------------
- [
+/*
+JSON Example:
+ ----------------------------------
+[
     {
        "name":"East Lindsey",
        "lat":53.2680103,
@@ -20,5 +20,5 @@ struct TownName: Decodable {
        "country":"GB",
        "state":"England"
     }
- ]
- */
+]
+*/

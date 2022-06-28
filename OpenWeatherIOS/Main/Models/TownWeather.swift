@@ -15,6 +15,28 @@ struct TownWeather: Decodable  {
     let name: String
     let cod: Int
     
+    struct Coord: Decodable  {
+        let lon: Double
+        let lat: Double
+    }
+
+    struct Main: Decodable  {
+        let temp: Double
+        let humidity: Int
+    }
+
+    struct Wind: Decodable  {
+        let speed: Double
+    }
+
+    struct Rain: Decodable {
+        let lastHour: Double
+        
+        private enum CodingKeys : String, CodingKey {
+            case lastHour = "1h"
+        }
+    }
+    
     /**
      Gets the info of the TownWeather.
      
@@ -46,33 +68,14 @@ struct TownWeather: Decodable  {
         let lat: CLLocationDegrees = coord.lat + northDistance / 110.574
         let lon: CLLocationDegrees = coord.lon + westDistance / (111.320 * cos(lat * .pi / 180))
          return CLLocationCoordinate2D(latitude: lat, longitude: lon)
-     }
+    }
 }
 
-struct Coord: Decodable  {
-    let lon: Double
-    let lat: Double
-}
-
-struct Main: Decodable  {
-    let temp: Double
-    let humidity: Int
-}
-
-struct Wind: Decodable  {
-    let speed: Double
-}
-
-struct Rain: Decodable {
-    let lastHour: Double
-    
-    private enum CodingKeys : String, CodingKey { case lastHour = "1h" }
-}
 
 /*
- JSON Example:
- -------------
- {
+JSON Example:
+------------------------------------
+{
     "coord": {
         "lon":-0.1257,
         "lat":51.5085
@@ -113,5 +116,5 @@ struct Rain: Decodable {
     "id":2643743,
     "name":"London",
     "cod":200
- }
- */
+}
+*/

@@ -13,15 +13,14 @@ class TownViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let viewModel = TownViewModel()
-    let countriesList = CountriesList()
     var selectedCountry: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "OpenWeather"
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(selectFilter))
+        
         bind()
     }
     
@@ -215,4 +214,5 @@ extension TownViewController: MKMapViewDelegate {
             }
         }
     }
+    
 }
