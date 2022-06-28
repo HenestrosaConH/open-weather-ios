@@ -50,25 +50,25 @@ class TownData {
      - Parameter url: URL from which we get the data
      - Parameter completion: Called when the request has finished. Returns an optional TownWeather (if retrieved successfully) or an optional error if the town couldn't be retrieved.
      */
-    func getTownName(url: URL, completion: @escaping (_ success: Bool, _ townName: TownName?, _ error: Error?) -> Void) {
+    func getTownName(url: URL, completion: @escaping (Result<TownName, Error>) -> Void) {
         URLSession.shared.dataTask(with: url, completionHandler: {
             data, response, error in
             
             guard let data = data, error == nil else {
-                completion(false, nil, error)
+                completion(.failure(error!))
                 return
             }
             
             do {
                 let names = try JSONDecoder().decode([TownName].self, from: data)
                 if names.count > 0 {
-                    completion(true, names[0], nil)
+                    completion(.success(names[0]))
                 } else {
-                    completion(false, nil, error)
+                    completion(.failure(error!))
                     return
                 }
             } catch {
-                completion(false, nil, error)
+                completion(.failure(error))
                 return
             }
         }).resume()
